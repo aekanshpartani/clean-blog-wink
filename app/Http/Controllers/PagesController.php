@@ -18,8 +18,19 @@ class PagesController extends Controller
 
         $menu = BuildMenu();
 
+
         return view('blog.index', [
             'posts' => $posts,
+            'menu' => $menu,
+        ]);
+    }
+    public function post($slug){
+
+        $menu = BuildMenu();
+
+        $post = WinkPost::where('slug',$slug)->with('tags')->firstOrFail();
+        return view('blog.single-post', [
+            'post' => $post,
             'menu' => $menu,
         ]);
     }

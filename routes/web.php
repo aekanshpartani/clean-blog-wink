@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'PagesController@index')->name('home');
+
+Route::get('/post/{slug}', 'PagesController@post')->name('single-post');
