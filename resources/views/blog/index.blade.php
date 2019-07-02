@@ -22,6 +22,17 @@
     <link href="{{ asset('css/clean-blog.css') }}" rel="stylesheet">
 
     <style>
+        .post-img{
+            width: 100%;
+        }
+        .post-preview{
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            padding: 16px;
+            border: 1px solid beige;
+            border-radius: 5px; /* 5px rounded corners */
+            margin: 10px;
+        }
     </style>
 
 </head>
@@ -59,11 +70,12 @@
 
 <!-- Main Content -->
 <div class="container">
-    <div class="row">
+    <div class="col-md-12">
 
-        <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="row">
             @foreach($posts as $post)
-                <div class="post-preview">
+                <div class="post-preview col-md-5">
+                    <img src="{{sampleImageIfNull($post->featured_image)}}" alt="" class="post-img">
                     <a href="{{route('single-post', [$post->slug])}}">
                         <h2 class="post-title">
                             {{$post->title}}
@@ -73,17 +85,10 @@
                         </h3>
                     </a>
                     <p class="post-meta">Posted by {{$post->author->name}}
-                        on {{date("F d, Y", strtotime($post->publish_date))}}</p>
+                        on {{dateFormatter($post->publish_date)}}</p>
                 </div>
                 <hr>
-        @endforeach
-
-
-
-
-
-
-
+          @endforeach
         <!-- Pager -->
             <div class="clearfix">
                 {{ $posts->links() }}
@@ -98,7 +103,7 @@
 <footer>
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="col-lg- col-md-10 mx-auto">
                           <ul class="list-inline text-center">
                             <li class="list-inline-item">
                               <a href="#">
@@ -141,7 +146,8 @@
 <script>
 
     $(document).ready(function(){
-        $(".masthead").css("background-image", "url('https://source.unsplash.com/random/1900x1267/?city,night')");
+        $(".masthead").css("background-image", "url('https://images.unsplash.com/uploads/1413259835094dcdeb9d3/6e609595?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1900&q=1267')");
+        //$(".post-img").attr('src','https://images.unsplash.com/photo-1526749837599-b4eba9fd855e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=600');
     });
 
 </script>

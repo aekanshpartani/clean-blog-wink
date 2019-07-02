@@ -5,8 +5,29 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <!-- For Google -->
+    <meta name="description" content="{{$post->meta['meta_description']}}">
+    <meta name="keywords" content="" />
+
+    <meta name="author" content="{{$post->author->name}}">
+
+    <meta name="copyright" content="" />
+    <meta name="application-name" content="" />
+
+    <!-- For Facebook -->
+    <meta property="og:title" content="{{$post->meta['opengraph_title']}}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="{{$post->meta['opengraph_image']}}" />
+    <meta property="og:url" content="" />
+    <meta property="og:description" content="{{$post->meta['opengraph_description']}}" />
+
+    <!-- For Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{{$post->meta['twitter_title']}}" />
+    <meta name="twitter:description" content="{{$post->meta['twitter_description']}}" />
+    <meta name="twitter:image" content="{{$post->meta['twitter_image']}}" />
+
+
 
     <title>{{ env('WEBSITE_TITLE') }} - {{ env('WEBSITE_TAGLINE') }}</title>
 
@@ -55,7 +76,8 @@
                     <h1>{{$post->title}}</h1>
                     <h2 class="subheading">{{$post->excerpt}}</h2>
                     <span class="meta">Posted by {{$post->author->name}}
-            on {{date("F d, Y", strtotime($post->publish_date))}}</span>
+                            on {{dateFormatter($post->publish_date)}}
+                    </span>
                 </div>
             </div>
         </div>
@@ -121,7 +143,8 @@
 
 <script>
     $(document).ready(function(){
-        $(".masthead").css("background-image", "url('https://source.unsplash.com/random/1900x1267/?city,night')");
+        $(".masthead").css("background-image", "url('https://images.unsplash.com/uploads/1413259835094dcdeb9d3/6e609595?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1900&q=1267')");
+
     });
 </script>
 

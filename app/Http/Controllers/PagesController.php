@@ -14,10 +14,9 @@ class PagesController extends Controller
         $posts = WinkPost::with('tags')
             ->live()
             ->orderBy('publish_date', 'DESC')
-            ->simplePaginate(6);
+            ->simplePaginate(5);
 
         $menu = BuildMenu();
-
 
         return view('blog.index', [
             'posts' => $posts,
@@ -29,6 +28,7 @@ class PagesController extends Controller
         $menu = BuildMenu();
 
         $post = WinkPost::where('slug',$slug)->with('tags')->firstOrFail();
+
         return view('blog.single-post', [
             'post' => $post,
             'menu' => $menu,
